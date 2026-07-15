@@ -10,7 +10,7 @@
 
   function loadConfig(callback) {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', '/config.json', true);
+    xhr.open('GET', 'config.json', true);
     xhr.onload = function() {
       if (xhr.status === 200 || xhr.status === 0) {
         callback(JSON.parse(xhr.responseText));
@@ -38,7 +38,7 @@
     inner.innerHTML = 
       '<div class="block--jacket"><ul class="list--jacket"><li class="inview">' +
       '<figure class="jacket"><img src="' + item.cover + '" alt="' + item.title + '">' +
-      '<img src="/assets/img/common/dummy.png" alt="dummy" class="dummy"></figure></li></ul></div>' +
+      '<img src="assets/img/common/dummy.png" alt="dummy" class="dummy"></figure></li></ul></div>' +
       '<div class="block--detail inview">' +
       '<p class="date">' + item.date + ' COVER<span class="category">' + item.category + '</span></p>' +
       '<p class="tit">' + item.title + '</p>' +

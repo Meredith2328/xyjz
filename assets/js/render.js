@@ -9,7 +9,7 @@
   // Load config
   function loadConfig(callback) {
     var xhr = new XMLHttpRequest();
-    xhr.open('GET', '/config.json', true);
+    xhr.open('GET', 'config.json', true);
     xhr.onload = function() {
       if (xhr.status === 200 || xhr.status === 0) {
         config = JSON.parse(xhr.responseText);
@@ -35,8 +35,8 @@
     if (!config) return;
     var logo = document.querySelector('header .logo a');
     if (logo) {
-      logo.href = '/';
-      logo.innerHTML = '<img src="/assets/img/avatar.jpg" alt="' + config.site.name + '" class="logo-img">';
+      logo.href = 'index.html';
+      logo.innerHTML = '<img src="assets/img/avatar.jpg" alt="' + config.site.name + '" class="logo-img">';
     }
     var fcLogo = document.querySelector('header .fc-logo');
     if (fcLogo) fcLogo.remove();
@@ -48,17 +48,17 @@
     var drawer = document.querySelector('.drawer .g-nav');
     if (!drawer) return;
     var navItems = [
-      { label: 'TOP', href: '/' },
-      { label: 'NEWS', href: '/news.html' },
-      { label: 'LIVE', href: '/live.html' },
-      { label: 'MOVIE', href: '/movie.html' },
-      { label: 'DISCOGRAPHY', href: '/discography.html' },
-      { label: 'LYRICS', href: '/lyrics.html' },
-      { label: 'SPECIAL', href: '/special.html' },
-      { label: 'BIOGRAPHY', href: '/biography.html' },
-      { label: 'WORKS', href: '/works.html' },
+      { label: 'TOP', href: 'index.html' },
+      { label: 'NEWS', href: 'news.html' },
+      { label: 'LIVE', href: 'live.html' },
+      { label: 'MOVIE', href: 'movie.html' },
+      { label: 'DISCOGRAPHY', href: 'discography.html' },
+      { label: 'LYRICS', href: 'lyrics.html' },
+      { label: 'SPECIAL', href: 'special.html' },
+      { label: 'BIOGRAPHY', href: 'biography.html' },
+      { label: 'WORKS', href: 'works.html' },
       { label: 'BILIBILI', href: config.social.bilibili, target: '_blank', icon: true },
-      { label: 'CONTACT', href: '/contact.html' }
+      { label: 'CONTACT', href: 'contact.html' }
     ];
     drawer.innerHTML = navItems.map(function(item) {
       var cls = '';
@@ -90,7 +90,7 @@
     if (document.querySelector('.sns-float')) return;
     var btn = document.createElement('div');
     btn.className = 'sns-float';
-    btn.innerHTML = '<a href="' + config.social.bilibili + '" target="_blank"><img src="/assets/img/avatar.jpg" alt="bilibili"><span>bilibili</span></a>';
+    btn.innerHTML = '<a href="' + config.social.bilibili + '" target="_blank"><img src="assets/img/avatar.jpg" alt="bilibili"><span>bilibili</span></a>';
     document.body.appendChild(btn);
   }
 
@@ -116,11 +116,11 @@
     if (!config) return;
     var kv = document.querySelector('.keyvisual');
     if (kv) {
-      kv.style.backgroundImage = 'url(/assets/img/top/kv.jpg)';
+      kv.style.backgroundImage = 'url(assets/img/top/kv.jpg)';
     }
     var bg = document.querySelector('.bg span');
     if (bg) {
-      bg.style.backgroundImage = 'url(/assets/img/top/bg.jpg)';
+      bg.style.backgroundImage = 'url(assets/img/top/bg.jpg)';
     }
     /* keyvisual logo-main removed - logo is in header */
   }
@@ -185,7 +185,7 @@
       return '<li class="inview youtube">' +
         '<a href="' + BILIBILI_BASE + m.bvid + '" target="_blank">' +
         '<figure class="thumb" style="background-image:url(\'' + cover + '\');">' +
-        '<img src="/assets/img/common/dummy.png" style="display:none;">' +
+        '<img src="assets/img/common/dummy.png" style="display:none;">' +
         '<div class="block--text pc">' +
         '<p class="icon-play"><span><svg width="20" height="24" viewBox="0 0 24.67 28.45"><path fill="white" d="M22.67,14.22,1,1.73v25l21.67-12.5m2,0L0,28.45V0Z"></path></svg></span></p>' +
         '<p class="tit">' + m.title + '</p>' +
@@ -231,7 +231,7 @@
     discoList.innerHTML = config.discography.map(function(d) {
       var link = d.bvid ? '/disco-detail.html?bvid=' + d.bvid : '#';
       return '<li class="inview"><a href="' + link + '" target="_blank" class="clearfix">' +
-        '<figure class="thumb"><img src="/assets/img/common/dummy.png" style="background-image:url(\'' + d.cover + '\');" alt="' + d.title + '"></figure>' +
+        '<figure class="thumb"><img src="assets/img/common/dummy.png" style="background-image:url(\'' + d.cover + '\');" alt="' + d.title + '"></figure>' +
         '<ul class="block--text">' +
         '<li class="title"><p><span><span class="category">' + d.category + '</span></span></p><br><p class="tit"><span><span>' + d.title + '</span></span></p></li>' +
         '<li class="date"><p><span><span>' + d.date + ' COVER</span></span></p></li>' +
@@ -247,7 +247,7 @@
     lyricsList.innerHTML = config.discography.filter(function(d) { return d.category === '翻唱'; }).map(function(d) {
       var link = d.bvid ? '/lyrics-detail.html?bvid=' + d.bvid : '#';
       return '<li class="inview"><a href="' + link + '" class="clearfix">' +
-        '<figure class="thumb"><img src="/assets/img/common/dummy.png" style="background-image:url(\'' + d.cover + '\');" alt="' + d.title + '"></figure>' +
+        '<figure class="thumb"><img src="assets/img/common/dummy.png" style="background-image:url(\'' + d.cover + '\');" alt="' + d.title + '"></figure>' +
         '<ul class="block--text"><li class="title"><p class="tit"><span><span>' + d.title + '</span></span></p></li></ul></a></li>';
     }).join('');
   }
@@ -260,7 +260,7 @@
     
     var artistBlock = document.querySelector('.block--artist');
     if (artistBlock) {
-      artistBlock.innerHTML = '<img src="' + bio.photo + '" alt="夏夜将終"><img src="/assets/img/common/dummy.png" alt="dummy" class="dummy">';
+      artistBlock.innerHTML = '<img src="' + bio.photo + '" alt="夏夜将終"><img src="assets/img/common/dummy.png" alt="dummy" class="dummy">';
     }
     
     var textBlock = document.querySelector('.block--text .text');
@@ -312,7 +312,7 @@
     specialList.innerHTML = config.discography.slice(0, 4).map(function(d) {
       var link = d.bvid ? '/disco-detail.html?bvid=' + d.bvid : '#';
       return '<li class="inview"><a href="' + link + '" target="_blank" class="clearfix">' +
-        '<figure class="thumb"><img src="/assets/img/common/dummy.png" style="background-image:url(\'' + d.cover + '\');" alt="' + d.title + '"></figure>' +
+        '<figure class="thumb"><img src="assets/img/common/dummy.png" style="background-image:url(\'' + d.cover + '\');" alt="' + d.title + '"></figure>' +
         '<ul class="block--text"><li class="title"><p class="tit"><span><span>' + d.title + '</span></span></p></li></ul></a></li>';
     }).join('');
   }
