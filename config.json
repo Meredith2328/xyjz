@@ -1,0 +1,73 @@
+﻿{
+  "site": {
+    "name": "夏夜将終へ OFFICIAL SITE",
+    "nameJP": "夏夜の終へ",
+    "nameCN": "夏夜将终",
+    "description": "在2023夏日将终的某夜因为夜鹿走到一起的乐队。",
+    "color": "#3D2B5F",
+    "colorAccent": "#8B7AB8",
+    "colorTeal": "#6B5B95"
+  },
+  "social": {
+    "bilibili": "https://space.bilibili.com/3461581623003593",
+    "bilibiliName": "夏夜将终_Official"
+  },
+  "footerBanners": [
+    { "img": "/assets/img/footer/yorushika.jpeg", "alt": "Yorushika", "link": "https://yorushika.com/", "target": "_blank" },
+    { "img": "/assets/img/footer/maya.jpg", "alt": "ずっと真夜中でいいのに", "link": "https://mayonaka-night.com/", "target": "_blank" },
+    { "img": "/assets/img/footer/fungizzz.jpg", "alt": "-fungizzz-", "link": "https://space.bilibili.com/3546635063789775", "target": "_blank" }
+  ],
+  "biography": {
+    "photo": "/assets/img/banner/v03_saturn_usojanai.jpg",
+    "intro": "在2023夏日将终的某夜因为夜鹿（片假名Yorushika/英文Yorushika）走到一起的乐队。该队在好听和好玩之间选择了好吃，愿望是一起拼好夏夜未完待续的拼图。目前主营日系摇滚，多风格和玩法持续探索中……\n所以夏夜其实还不会结束——",
+    "members": [
+      { "role": "Vocal", "name": "鹅鹅" },
+      { "role": "Guitar", "name": "苹果蟹 & 范特西" },
+      { "role": "Bass", "name": "小纸杯" },
+      { "role": "Drums", "name": "英理" },
+      { "role": "Violin", "name": "十派" },
+      { "role": "Keyboard", "name": "懒仟 / 蛋糕" }
+    ],
+    "history": [
+      { "year": "2023年", "text": "夏末某夜，因为夜鹿走到一起，乐队结成。" },
+      { "year": "2024年", "text": "1月 パレード（游行）翻唱发布。\n4月 「败犬不需要安可」翻唱发布。\n5月 参加吉协×乐手联盟×沸点五月雨二次元音乐会。\n5月 ノーチラス（鹦鹉螺）现场翻唱。\n6月 サターン（土星）&嘘じゃない 翻唱发布。" },
+      { "year": "2025年", "text": "1月 靴の花火 现场翻唱发布。\n3月 即兴复活EP02 @叶耀珍楼102室。\n4月 术拿、花降らし、再度变身livehouse的教室 翻唱发布。" }
+    ]
+  },
+  "news": [
+    { "date": "2025.04.03", "category": "翻唱", "title": "术拿、花降らし、再度变身livehouse的教室丨n-buna", "bvid": "BV1yTZmYdEeX" },
+    { "date": "2025.03.30", "category": "LIVE", "title": "免费入场丨即兴复活EP02丨0330晚18:30@叶耀珍楼102室", "bvid": "" },
+    { "date": "2025.01.06", "category": "LIVE", "title": "靴の花火-ヨルシカ \"拥有这一切的夏天 消失了\"", "bvid": "BV1Dwr5YAEn2" },
+    { "date": "2024.06.02", "category": "翻唱", "title": "サターン(土星)➡️嘘じゃない - ずっと真夜中でいいのに。", "bvid": "BV1Et421K7Hg" },
+    { "date": "2024.05.10", "category": "LIVE", "title": "用道别那样的速度抬起头吧——ノーチラス（鹦鹉螺）【ヨルシカ】乐队现场", "bvid": "BV1gD421N7Yx" },
+    { "date": "2024.05.07", "category": "活动", "title": "吉协×乐手联盟×沸点 五月雨二次元音乐会！", "bvid": "BV1Ez421S7jc" },
+    { "date": "2024.04.15", "category": "翻唱", "title": "败犬不需要安可 - ヨルシカ(夜鹿)", "bvid": "BV15x4y1a74V" },
+    { "date": "2024.01.11", "category": "翻唱", "title": "请不要忘记我独身一人的游行 パレード - ヨルシカ(夜鹿)", "bvid": "BV1yK4y1B78g" }
+  ],
+  "live": [
+    { "date": "2025.03.30", "week": "SUN", "title": "免费入场丨即兴复活EP02丨0330晚18:30@叶耀珍楼102室", "bvid": "" }
+  ],
+  "discography": [
+    { "title": "术拿、花降らし、再度变身livehouse的教室", "date": "2025.04.03", "category": "翻唱", "original": "n-buna", "cover": "/assets/img/banner/v01_saturn_livehouse.jpg", "bvid": "BV1yTZmYdEeX" },
+    { "title": "靴の花火", "date": "2025.01.06", "category": "翻唱", "original": "ヨルシカ", "cover": "/assets/img/banner/v02_kutsu_hanabi.jpg", "bvid": "BV1Dwr5YAEn2" },
+    { "title": "サターン / 嘘じゃない", "date": "2024.06.02", "category": "翻唱", "original": "ずっと真夜中でいいのに。", "cover": "/assets/img/banner/v03_saturn_usojanai.jpg", "bvid": "BV1Et421K7Hg" },
+    { "title": "ノーチラス（鹦鹉螺）", "date": "2024.05.10", "category": "翻唱", "original": "ヨルシカ", "cover": "/assets/img/banner/v04_nautilus.jpg", "bvid": "BV1gD421N7Yx" },
+    { "title": "五月雨二次元音乐会", "date": "2024.05.07", "category": "活动", "original": "Various", "cover": "/assets/img/banner/v05_may_concert.jpg", "bvid": "BV1Ez421S7jc" },
+    { "title": "負け犬にアンコールはいらない", "date": "2024.04.15", "category": "翻唱", "original": "ヨルシカ", "cover": "/assets/img/banner/v06_makeinu.jpg", "bvid": "BV15x4y1a74V" },
+    { "title": "パレード", "date": "2024.01.11", "category": "翻唱", "original": "ヨルシカ", "cover": "/assets/img/banner/v07_parade.jpg", "bvid": "BV1yK4y1B78g" }
+  ],
+  "movies": [
+    { "title": "术拿、花降らし、再度变身livehouse的教室丨n-buna", "bvid": "BV1yTZmYdEeX", "date": "2025.04.03" },
+    { "title": "靴の花火-ヨルシカ", "bvid": "BV1Dwr5YAEn2", "date": "2025.01.06" },
+    { "title": "サターン(土星)➡️嘘じゃない - ずっと真夜中でいいのに。", "bvid": "BV1Et421K7Hg", "date": "2024.06.02" },
+    { "title": "ノーチラス（鹦鹉螺）- ヨルシカ", "bvid": "BV1gD421N7Yx", "date": "2024.05.10" },
+    { "title": "五月雨二次元音乐会", "bvid": "BV1Ez421S7jc", "date": "2024.05.07" },
+    { "title": "败犬不需要安可 - ヨルシカ", "bvid": "BV15x4y1a74V", "date": "2024.04.15" },
+    { "title": "パレード - ヨルシカ", "bvid": "BV1yK4y1B78g", "date": "2024.01.11" }
+  ],
+  "works": [],
+  "contact": {
+    "bilibili": "https://space.bilibili.com/3461581623003593",
+    "bilibiliName": "夏夜将终_Official"
+  }
+}

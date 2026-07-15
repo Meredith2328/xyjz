@@ -1,0 +1,13 @@
+﻿
+/* PC VIEW RESIZE CSS */
+
+.page--home.loaded .container .section--keyvisual .block--bnr, .page--home.load-finish .container .section--keyvisual .block--bnr {
+  padding-right: 15px;
+  margin-left: 0;
+  margin-right: 55vw;
+  bottom: 17vw;
+}
+.page--home .container .section--news .inner { padding-top: 15vw;}
+.page--home .container .section--movie .inner { padding-bottom: 42vw;}
+.page--home .container [class^="section--"] .block--tit .section-tit { width: 50vw;}
+.page--home .list--movie li a .thumb { height: 50vw;}
