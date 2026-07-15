@@ -113,79 +113,76 @@
     slider.style.transition = 'transform 0.4s ease';
   }
 
-  // Banner carousel - 3 items visible, advance by 1, infinite loop
+  // Banner carousel - 3 items visible, 7 total, auto-advance, loop
   function initBannerCarousel() {
-    var bnrSlider = document.querySelector('.page--home .section--bnr .list--bnr');
-    if (!bnrSlider || bnrSlider.children.length <= 3) return;
+    var bnrList = document.querySelector('.page--home .section--bnr .list--bnr');
+    if (!bnrList || bnrList.children.length < 3) return;
 
-    var items = Array.from(bnrSlider.children);
-    var totalItems = items.length; // 14 (7x2 duplicated)
-    var originalCount = totalItems / 2; // 7 original items
+    var items = Array.from(bnrList.children);
+    var totalItems = items.length; // 7
+    var visibleCount = 3;
+    var maxIndex = totalItems - visibleCount; // 4 (positions 0-4)
     var current = 0;
-    var isMobile = window.matchMedia('(max-width: 768px)').matches;
-    var visibleCount = isMobile ? 1 : 3;
-    var maxIndex = totalItems - visibleCount;
-
-    // Calculate item width
-    var containerWidth = bnrSlider.parentElement.offsetWidth - 40; // account for padding
     var gap = 16;
-    var itemWidth = isMobile ? containerWidth : (containerWidth - gap * (visibleCount - 1)) / visibleCount;
 
-    // Set item widths
-    items.forEach(function(item) {
-      item.style.flex = '0 0 ' + itemWidth + 'px';
-      item.style.width = itemWidth + 'px';
-    });
-
-    function scrollToIndex(idx, animate) {
-      var offset = idx * (itemWidth + gap);
-      bnrSlider.style.transition = animate !== false ? 'transform 0.6s ease' : 'none';
-      bnrSlider.style.transform = 'translateX(-' + offset + 'px)';
-    }
-
-    function next() {
-      current++;
-      scrollToIndex(current, true);
-      
-      // When we reach the duplicate set, silently reset to the beginning
-      if (current >= originalCount) {
-        setTimeout(function() {
-          current = current - originalCount;
-          scrollToIndex(current, false);
-        }, 600);
-      }
-    }
-
-    // Auto-advance every 4 seconds
-    var autoTimer = setInterval(next, 4000);
-
-    // Dots indicator (only for original items)
-    var dotsWrap = document.createElement('ul');
-    dotsWrap.style.cssText = 'display:flex;gap:6px;justify-content:center;list-style:none;padding:10px 0 0;margin:0;';
-    var dotCount = originalCount - visibleCount + 1;
-    for (var i = 0; i < dotCount; i++) {
-      (function(idx) {
-        var dot = document.createElement('li');
-        dot.style.cssText = 'width:8px;height:8px;border-radius:50%;background:' + (idx === 0 ? '#6B5B95' : '#ddd') + ';cursor:pointer;transition:background 0.3s;';
-        dot.addEventListener('click', function() {
-          current = idx;
-          scrollToIndex(current, true);
-          updateDots();
+    // Wait for layout to complete, then measure actual item width
+    requestAnimationFrame(function() {
+      requestAnimationFrame(function() {
+        var containerWidth = bnrList.offsetWidth;
+        var itemWidth = (containerWidth - gap * (visibleCount - 1)) / visibleCount;
+        
+        // Set fixed item widths
+        items.forEach(function(item) {
+          item.style.flex = '0 0 ' + itemWidth + 'px';
+          item.style.width = itemWidth + 'px';
         });
-        dotsWrap.appendChild(dot);
-      })(i);
-    }
-    bnrSlider.parentElement.appendChild(dotsWrap);
 
-    function updateDots() {
-      var displayIdx = current >= originalCount ? current - originalCount : current;
-      if (displayIdx >= dotCount) displayIdx = dotCount - 1;
-      Array.from(dotsWrap.children).forEach(function(dot, i) {
-        dot.style.background = i === displayIdx ? '#6B5B95' : '#ddd';
+        function scrollToIndex(idx, animate) {
+          var offset = idx * (itemWidth + gap);
+          bnrList.style.transition = animate !== false ? 'transform 0.6s ease' : 'none';
+          bnrList.style.transform = 'translateX(-' + offset + 'px)';
+        }
+
+        function next() {
+          current++;
+          if (current > maxIndex) {
+            // Animate to the next position (showing duplicates area), then reset
+            current = 0;
+            scrollToIndex(0, true);
+          } else {
+            scrollToIndex(current, true);
+          }
+          updateDots();
+        }
+
+        // Dots
+        var dotsWrap = document.createElement('ul');
+        dotsWrap.style.cssText = 'display:flex;gap:6px;justify-content:center;list-style:none;padding:10px 0 0;margin:0;';
+        for (var i = 0; i <= maxIndex; i++) {
+          (function(idx) {
+            var dot = document.createElement('li');
+            dot.style.cssText = 'width:8px;height:8px;border-radius:50%;background:' + (idx === 0 ? '#6B5B95' : '#ddd') + ';cursor:pointer;transition:background 0.3s;';
+            dot.addEventListener('click', function() {
+              current = idx;
+              scrollToIndex(current, true);
+              updateDots();
+            });
+            dotsWrap.appendChild(dot);
+          })(i);
+        }
+        bnrList.parentElement.appendChild(dotsWrap);
+
+        function updateDots() {
+          var dots = dotsWrap.children;
+          for (var i = 0; i < dots.length; i++) {
+            dots[i].style.background = i === current ? '#6B5B95' : '#ddd';
+          }
+        }
+
+        // Auto-advance every 4 seconds
+        setInterval(next, 4000);
       });
-    }
-
-    setInterval(updateDots, 500);
+    });
   }
 
   // Scroll indicator hide on scroll

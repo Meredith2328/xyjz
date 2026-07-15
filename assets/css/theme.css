@@ -1,6 +1,8 @@
 ﻿/* 夏夜将终 - Theme overrides (deep blue-purple, no overlaps) */
 
 body { color: #1a1a2e; background: #fff; }
+.wrap { margin-left: 50px !important; }
+header { margin-left: 50px !important; }
 
 /* === HEADER === */
 header {
@@ -16,26 +18,22 @@ header .logo {
   margin: 0 !important;
   position: absolute;
   top: 50%;
-  left: 70px;
-  transform: translateY(-50%) scaleX(0);
-  transform-origin: left center;
-  transition: transform 0.6s ease 0.3s;
+  left: 20px;
+  transform: translateY(-50%);
 }
 header .logo a {
   display: block;
   line-height: 0;
 }
 header .logo a img {
-  height: 50px;
-  width: 50px;
+  height: 48px;
+  width: 48px;
   border-radius: 50%;
   object-fit: cover;
   display: block;
   transition: opacity 0.3s ease;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.15);
-}
-body.loaded header .logo {
-  transform: translateY(-50%) scaleX(1);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
+  border: 2px solid rgba(107,91,149,0.3);
 }
 header .logo a:hover img { opacity: 0.7; }
 header .fc-logo { display: none !important; }
@@ -213,7 +211,10 @@ header .drawer__btn:hover span { background: #4A3D75 !important; }
   gap: 16px;
   padding-bottom: 15px;
   position: relative;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+.page--home .container .section--bnr .inner .block--bnr .list--bnr::-webkit-scrollbar { display: none; }
 .page--home .container .section--bnr .inner .block--bnr .list--bnr li {
   flex: 0 0 calc((100% - 32px) / 3);
   margin: 0 !important;
@@ -341,7 +342,10 @@ header .drawer__btn:hover span { background: #4A3D75 !important; }
   gap: 16px;
   padding: 0 40px 20px;
   scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
 }
+.page--home .container .section--movie .inner .list--movie::-webkit-scrollbar { display: none; }
 .page--home .container .section--movie .inner .list--movie li {
   flex: 0 0 300px;
   margin: 0 !important;

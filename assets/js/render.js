@@ -130,12 +130,10 @@
     if (!config) return;
     var bnrList = document.querySelector('.section--bnr .list--bnr');
     if (!bnrList) return;
-    var bnrHTML = config.discography.map(function(d) {
+    bnrList.innerHTML = config.discography.map(function(d) {
       var link = d.bvid ? BILIBILI_BASE + d.bvid : '#';
       return '<li><a href="' + link + '" target="_blank"><img src="' + d.cover + '" alt="' + d.title + '"></a></li>';
     }).join('');
-    // Duplicate items for seamless infinite loop
-    bnrList.innerHTML = bnrHTML + bnrHTML;
   }
 
   // Render news (home page - 3 items, news page - all)
