@@ -6,9 +6,12 @@ header { margin-left: 50px !important; }
 
 /* === HEADER === */
 header {
-  position: relative !important;
-  padding: 25px 40px 25px 70px !important;
-  z-index: 20;
+  position: absolute !important;
+  top: 0;
+  left: 50px;
+  right: 0;
+  padding: 25px 40px !important;
+  z-index: 90;
   background: transparent;
   height: 70px;
   box-sizing: border-box;
@@ -18,22 +21,23 @@ header .logo {
   margin: 0 !important;
   position: absolute;
   top: 50%;
-  left: 20px;
+  left: 10px;
   transform: translateY(-50%);
+  z-index: 100 !important;
 }
 header .logo a {
   display: block;
   line-height: 0;
 }
 header .logo a img {
-  height: 48px;
-  width: 48px;
+  height: 52px !important;
+  width: 52px !important;
   border-radius: 50%;
   object-fit: cover;
-  display: block;
+  display: block !important;
   transition: opacity 0.3s ease;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.25);
-  border: 2px solid rgba(107,91,149,0.3);
+  box-shadow: 0 2px 12px rgba(0,0,0,0.4);
+  border: 3px solid #fff;
 }
 header .logo a:hover img { opacity: 0.7; }
 header .fc-logo { display: none !important; }
@@ -109,7 +113,7 @@ header .drawer__btn:hover span { background: #4A3D75 !important; }
 
 /* === KEYVISUAL (home) === */
 .page--home .container .section--keyvisual {
-  height: auto !important;
+  height: 100vh !important;
   position: relative !important;
   background: #1a1530 !important;
   padding: 0 !important;
@@ -117,9 +121,7 @@ header .drawer__btn:hover span { background: #4A3D75 !important; }
 }
 .page--home .container .section--keyvisual .keyvisual {
   width: 100% !important;
-  height: 60vh !important;
-  min-height: 400px;
-  max-height: 600px;
+  height: 100vh !important;
   background-size: cover !important;
   background-position: center !important;
 }
@@ -990,4 +992,14 @@ body.loaded .sns-float {
   width: 1px;
   height: 20px;
   background: #ddd;
+}
+
+/* Non-home pages: header in normal flow with white background */
+body:not(.page--home) header {
+  position: relative !important;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+}
+body:not(.page--home) header .logo a img {
+  border-color: #6B5B95;
 }
