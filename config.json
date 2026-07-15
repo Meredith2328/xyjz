@@ -26,7 +26,8 @@
       { "role": "Bass", "name": "小纸杯" },
       { "role": "Drums", "name": "英理" },
       { "role": "Violin", "name": "十派" },
-      { "role": "Keyboard", "name": "懒仟 / 蛋糕" }
+      { "role": "Keyboard", "name": "懒仟 / 蛋糕" },
+      { "role": "Salute to", "name": "沼跃鱼" }
     ],
     "history": [
       { "year": "2023年", "text": "夏末某夜，因为夜鹿走到一起，乐队结成。" },
