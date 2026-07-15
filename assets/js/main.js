@@ -113,105 +113,73 @@
     slider.style.transition = 'transform 0.4s ease';
   }
 
-  // Banner carousel (keyvisual and section--bnr)
+  // Banner carousel - 3 items visible, advance by 1, auto-scroll, loop
   function initBannerCarousel() {
-    // Keyvisual banner
-    var kvSlider = document.querySelector('.page--home .section--keyvisual .list--bnr');
-    if (kvSlider && kvSlider.children.length > 1) {
-      initSimpleSlider(kvSlider, 7000);
-    }
-
-    // Section banner
     var bnrSlider = document.querySelector('.page--home .section--bnr .list--bnr');
-    if (bnrSlider && bnrSlider.children.length > 1) {
-      initBnrSlider(bnrSlider);
-    }
-  }
+    if (!bnrSlider || bnrSlider.children.length <= 3) return;
 
-  function initSimpleSlider(container, interval) {
-    var items = container.children;
+    var items = Array.from(bnrSlider.children);
+    var totalItems = items.length;
     var current = 0;
-    container.style.position = 'relative';
-    container.style.overflow = 'hidden';
-    
-    // Create dots
+    var maxIndex = totalItems - 3; // last position shows last 3 items
+    var isMobile = window.matchMedia('(max-width: 768px)').matches;
+    var visibleCount = isMobile ? 1 : 3;
+    if (isMobile) maxIndex = totalItems - 1;
+
+    // Calculate item width (including gap)
+    var containerWidth = bnrSlider.parentElement.offsetWidth;
+    var gap = 16;
+    var itemWidth = isMobile ? containerWidth : (containerWidth - gap * (visibleCount - 1)) / visibleCount;
+
+    // Set item widths
+    items.forEach(function(item) {
+      item.style.flex = '0 0 ' + itemWidth + 'px';
+      item.style.width = itemWidth + 'px';
+    });
+
+    function scrollToIndex(idx) {
+      var offset = idx * (itemWidth + gap);
+      bnrSlider.style.transform = 'translateX(-' + offset + 'px)';
+      bnrSlider.style.transition = 'transform 0.6s ease';
+    }
+
+    function next() {
+      current++;
+      if (current > maxIndex) {
+        current = 0;
+      }
+      scrollToIndex(current);
+    }
+
+    // Auto-advance every 4 seconds
+    setInterval(next, 4000);
+
+    // Dots indicator
     var dotsWrap = document.createElement('ul');
-    dotsWrap.className = 'slick-dots';
-    dotsWrap.style.cssText = 'position:absolute;bottom:20px;left:20px;z-index:20;list-style:none;display:flex;gap:8px;';
-    
-    for (var i = 0; i < items.length; i++) {
-      items[i].style.cssText = 'transition:opacity 0.8s ease;position:absolute;top:0;left:0;width:100%;';
-      if (i > 0) items[i].style.opacity = '0';
-      
+    dotsWrap.style.cssText = 'display:flex;gap:6px;justify-content:center;list-style:none;padding:10px 0 0;margin:0;';
+    for (var i = 0; i <= maxIndex; i++) {
       (function(idx) {
         var dot = document.createElement('li');
-        dot.style.cssText = 'width:12px;height:12px;border-radius:50%;background:' + (idx === 0 ? '#ACD0D1' : '#F0F0F0') + ';cursor:pointer;transition:background 0.3s;';
+        dot.style.cssText = 'width:8px;height:8px;border-radius:50%;background:' + (idx === 0 ? '#6B5B95' : '#ddd') + ';cursor:pointer;transition:background 0.3s;';
         dot.addEventListener('click', function() {
           current = idx;
-          updateSlide();
+          scrollToIndex(current);
+          updateDots();
         });
         dotsWrap.appendChild(dot);
       })(i);
     }
-    container.appendChild(dotsWrap);
+    bnrSlider.parentElement.appendChild(dotsWrap);
 
-    var dots = dotsWrap.children;
-
-    function updateSlide() {
-      for (var i = 0; i < items.length; i++) {
-        items[i].style.opacity = i === current ? '1' : '0';
-        if (dots[i]) dots[i].style.background = i === current ? '#ACD0D1' : '#F0F0F0';
-      }
-    }
-
-    setInterval(function() {
-      current = (current + 1) % items.length;
-      updateSlide();
-    }, interval);
-  }
-
-  function initBnrSlider(container) {
-    var items = container.children;
-    var isMobile = window.matchMedia('(max-width: 960px)').matches;
-    
-    if (isMobile) {
-      // Mobile: show 1, autoplay
-      container.style.overflow = 'hidden';
-      container.style.position = 'relative';
-      for (var i = 0; i < items.length; i++) {
-        items[i].style.cssText = 'transition:transform 0.6s ease;';
-      }
-      var current = 0;
-      setInterval(function() {
-        current = (current + 1) % items.length;
-        for (var i = 0; i < items.length; i++) {
-          items[i].style.transform = 'translateX(' + ((i - current) * 100) + '%)';
-        }
-      }, 7000);
-    } else {
-      // PC: show 3 at a time, horizontal scroll
-      container.style.overflowX = 'auto';
-      container.style.display = 'flex';
-      container.style.flexWrap = 'nowrap';
-      container.style.gap = '24px';
-      container.style.scrollSnapType = 'x mandatory';
-      container.style.paddingBottom = '20px';
-      Array.from(items).forEach(function(li) {
-        li.style.flex = '0 0 auto';
-        li.style.scrollSnapAlign = 'start';
-        li.style.width = '400px';
+    function updateDots() {
+      Array.from(dotsWrap.children).forEach(function(dot, i) {
+        dot.style.background = i === current ? '#6B5B95' : '#ddd';
       });
-
-      // Auto-scroll
-      var scrollPos = 0;
-      setInterval(function() {
-        scrollPos += 424;
-        if (scrollPos >= container.scrollWidth - container.clientWidth) {
-          scrollPos = 0;
-        }
-        container.scrollTo({ left: scrollPos, behavior: 'smooth' });
-      }, 5000);
     }
+
+    // Update dots after each scroll
+    var origNext = next;
+    setInterval(function() { updateDots(); }, 500);
   }
 
   // Scroll indicator hide on scroll
@@ -245,6 +213,14 @@
   // Init all
   document.addEventListener('DOMContentLoaded', function() {
     document.body.classList.add('loaded');
+    
+    // Listen for content rendered by render.js
+    window.addEventListener('contentRendered', function() {
+      initBannerCarousel();
+      initMovieCarousel();
+    });
+    // Trigger loaded class after a small delay for render.js to complete
+    setTimeout(function() { document.body.classList.add('loaded'); }, 200);
     initMenu();
     initInview();
     initYouTubeThumbs();

@@ -36,7 +36,7 @@
     var logo = document.querySelector('header .logo a');
     if (logo) {
       logo.href = '/';
-      logo.innerHTML = '<img src="/assets/img/logo/header.png" alt="' + config.site.name + '" class="logo-img">';
+      logo.innerHTML = '<img src="/assets/img/avatar.jpg" alt="' + config.site.name + '" class="logo-img">';
     }
     var fcLogo = document.querySelector('header .fc-logo');
     if (fcLogo) fcLogo.remove();
@@ -84,6 +84,16 @@
     });
   }
 
+  // Render SNS float button
+  function renderSNSFloat() {
+    if (!config) return;
+    if (document.querySelector('.sns-float')) return;
+    var btn = document.createElement('div');
+    btn.className = 'sns-float';
+    btn.innerHTML = '<a href="' + config.social.bilibili + '" target="_blank"><img src="/assets/img/avatar.jpg" alt="Bilibili"><span>Bilibili</span></a>';
+    document.body.appendChild(btn);
+  }
+
   // Render footer
   function renderFooter() {
     if (!config) return;
@@ -116,7 +126,7 @@
     }
     var logoMain = document.querySelector('.logo-main');
     if (logoMain) {
-      logoMain.innerHTML = '<img src="/assets/img/logo/main.png" alt="' + config.site.name + '" >';
+      logoMain.innerHTML = '<img src="/assets/img/avatar.jpg" alt="' + config.site.name + '" style="width:80px;height:80px;border-radius:50%;object-fit:cover;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.4));">';
     }
   }
 
@@ -307,7 +317,11 @@
     renderContact();
     renderWorks();
     renderSpecial();
+    renderSNSFloat();
     renderFooter();
+    
+    // Dispatch event so main.js can init carousels
+    window.dispatchEvent(new CustomEvent('contentRendered'));
     
     // Re-trigger inview observer for dynamically added content
     if ('IntersectionObserver' in window) {
