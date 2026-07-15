@@ -5,25 +5,29 @@ body { color: #1a1a2e; background: #fff; }
 /* === HEADER === */
 header {
   position: relative !important;
-  padding: 30px 40px !important;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  padding: 25px 40px 25px 70px !important;
   z-index: 20;
   background: transparent;
+  height: 70px;
+  box-sizing: border-box;
 }
 header .logo {
   width: auto !important;
   margin: 0 !important;
+  position: absolute;
+  top: 50%;
+  left: 70px;
+  transform: translateY(-50%);
 }
 header .logo a {
-  display: flex;
-  align-items: center;
+  display: block;
+  line-height: 0;
 }
 header .logo a img {
-  height: 32px;
+  height: 36px;
   width: auto;
   transition: opacity 0.3s ease;
+  display: block;
 }
 .page--home header .logo a img {
   filter: invert(1) drop-shadow(0 1px 4px rgba(0,0,0,0.4));
@@ -137,23 +141,58 @@ header .drawer__btn:hover span { background: #4A3D75 !important; }
   display: inline-block;
 }
 .page--home .container .section--keyvisual .scroll {
-  position: relative !important;
-  width: 100% !important;
-  background: transparent !important;
-  padding: 20px 0 30px !important;
+  position: absolute !important;
+  bottom: 0 !important;
+  left: 0 !important;
+  width: 50px !important;
+  background: #ffffff !important;
+  padding: 80px 0 0 !important;
   text-align: center;
+  z-index: 10;
 }
 .page--home .container .section--keyvisual .scroll p {
-  position: relative !important;
-  top: auto !important;
-  right: auto !important;
-  transform: none !important;
+  transform: rotate(90deg);
+  -webkit-transform: rotate(90deg);
   display: inline-block;
-  width: auto !important;
-  color: #fff !important;
+  position: absolute;
+  top: 35px;
+  right: -25px;
+  width: 100px;
+  font-family: 'Roboto', sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.3em;
+  color: #1a1a2e !important;
+  white-space: nowrap;
 }
 .page--home .container .section--keyvisual .scroll .icon {
-  display: none !important;
+  position: relative;
+  width: 24px;
+  padding: 60px 0 0;
+  margin: 0 auto;
+  display: block !important;
+}
+.page--home .container .section--keyvisual .scroll .line {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  margin: auto;
+  width: 1px;
+  height: 100%;
+  overflow: hidden;
+}
+.page--home .container .section--keyvisual .scroll .line > span {
+  display: block;
+  width: 2px;
+  margin: auto;
+  height: 40px;
+  background: #1a1a2e;
+  animation: SCROLL_ANIM 1.5s cubic-bezier(0.22, 0.61, 0.36, 1) infinite;
+}
+@keyframes SCROLL_ANIM {
+  0% { opacity: 0.4; transform: translateY(-50px); }
+  50% { opacity: 1; }
+  100% { opacity: 0; transform: translateY(50px); }
 }
 
 /* === SNS (home) - put in footer, not fixed === */
