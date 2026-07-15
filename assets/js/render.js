@@ -90,7 +90,7 @@
     if (document.querySelector('.sns-float')) return;
     var btn = document.createElement('div');
     btn.className = 'sns-float';
-    btn.innerHTML = '<a href="' + config.social.bilibili + '" target="_blank"><img src="/assets/img/avatar.jpg" alt="Bilibili"><span>Bilibili</span></a>';
+    btn.innerHTML = '<a href="' + config.social.bilibili + '" target="_blank"><img src="/assets/img/avatar.jpg" alt="bilibili"><span>bilibili</span></a>';
     document.body.appendChild(btn);
   }
 
@@ -218,7 +218,7 @@
     });
   }
 
-  // Bilibili cover helper
+  // bilibili cover helper
   function getBiliCover(bvid) {
     return 'https://i2.hdslb.com/bfs/archive/' + bvid + '.jpg';
   }

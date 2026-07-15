@@ -43,7 +43,7 @@
       '<p class="date">' + item.date + ' COVER<span class="category">' + item.category + '</span></p>' +
       '<p class="tit">' + item.title + '</p>' +
       '<div class="text">原曲：' + item.original + '<br>' +
-      '配信元：<a href="' + BILIBILI_BASE + item.bvid + '" target="_blank" style="color:#8B7AB8;text-decoration:underline;">Bilibili</a></div>' +
+      '配信元：<a href="' + BILIBILI_BASE + item.bvid + '" target="_blank" style="color:#8B7AB8;text-decoration:underline;">bilibili</a></div>' +
       '<ul class="block--track"><li><p class="title">TRACKLIST</p><ul class="list--track">' +
       '<li><span class="num">1.</span> ' + item.title + ' <span class="tie-up">(Cover of ' + item.original + ')</span></li>' +
       '</ul></li></ul></div>';

@@ -76,41 +76,13 @@
     var scrollAmount = 0;
     var itemWidth = items[0].offsetWidth + 40; // margin
 
-    // Create arrows if not present
-    var titArea = document.querySelector('.page--home .section--movie .tit-area');
-    if (titArea && !titArea.querySelector('.slick-arrows')) {
-      var arrowsWrap = document.createElement('div');
-      arrowsWrap.className = 'slick-arrows';
-      arrowsWrap.style.cssText = 'position:absolute;top:-163px;right:80px;display:flex;gap:30px;cursor:pointer;';
-      
-      var prev = document.createElement('p');
-      prev.className = 'arrow-prev';
-      prev.innerHTML = '<svg width="60" height="12" viewBox="0 0 57.64 11.17" style="fill:#222;transition:fill 0.3s;"><polygon points="57.64 11.18 0 11.18 0 10.18 55.23 10.18 45.76 0.71 46.47 0 57.64 11.18"></polygon></svg>';
-      prev.style.cssText = 'cursor:pointer;padding:10px 0;transition:all 0.3s;';
-      prev.addEventListener('mouseenter', function() { prev.querySelector('svg').style.fill = '#ACD0D1'; });
-      prev.addEventListener('mouseleave', function() { prev.querySelector('svg').style.fill = '#222'; });
-
-      var next = document.createElement('p');
-      next.className = 'arrow-next';
-      next.innerHTML = '<svg width="60" height="12" viewBox="0 0 57.64 11.17" style="fill:#222;transition:fill 0.3s;"><polygon points="0 11.18 57.64 11.18 57.64 10.18 2.41 10.18 11.88 0.71 11.18 0 0 11.18"></polygon></svg>';
-      next.style.cssText = 'cursor:pointer;padding:10px 0;transition:all 0.3s;';
-      next.addEventListener('mouseenter', function() { next.querySelector('svg').style.fill = '#ACD0D1'; });
-      next.addEventListener('mouseleave', function() { next.querySelector('svg').style.fill = '#222'; });
-
-      prev.addEventListener('click', function() { slider.scrollBy({ left: -itemWidth, behavior: 'smooth' }); });
-      next.addEventListener('click', function() { slider.scrollBy({ left: itemWidth, behavior: 'smooth' }); });
-
-      arrowsWrap.appendChild(prev);
-      arrowsWrap.appendChild(next);
-      titArea.style.position = 'relative';
-      titArea.appendChild(arrowsWrap);
-    }
-
-    // Make slider horizontally scrollable
-    slider.style.overflowX = 'hidden';
+    // Arrows are handled by render.js addMovieArrows() function
+    slider.style.overflowX = 'auto';
     slider.style.display = 'flex';
     slider.style.flexWrap = 'nowrap';
-    slider.style.transition = 'transform 0.4s ease';
+    slider.style.scrollSnapType = 'x mandatory';
+    slider.style.scrollbarWidth = 'none';
+    slider.style.msOverflowStyle = 'none';
   }
 
   // Banner carousel - 3 items visible, 7 total, auto-advance, loop
