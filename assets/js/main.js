@@ -113,21 +113,21 @@
     slider.style.transition = 'transform 0.4s ease';
   }
 
-  // Banner carousel - 3 items visible, advance by 1, auto-scroll, loop
+  // Banner carousel - 3 items visible, advance by 1, infinite loop
   function initBannerCarousel() {
     var bnrSlider = document.querySelector('.page--home .section--bnr .list--bnr');
     if (!bnrSlider || bnrSlider.children.length <= 3) return;
 
     var items = Array.from(bnrSlider.children);
-    var totalItems = items.length;
+    var totalItems = items.length; // 14 (7x2 duplicated)
+    var originalCount = totalItems / 2; // 7 original items
     var current = 0;
-    var maxIndex = totalItems - 3; // last position shows last 3 items
     var isMobile = window.matchMedia('(max-width: 768px)').matches;
     var visibleCount = isMobile ? 1 : 3;
-    if (isMobile) maxIndex = totalItems - 1;
+    var maxIndex = totalItems - visibleCount;
 
-    // Calculate item width (including gap)
-    var containerWidth = bnrSlider.parentElement.offsetWidth;
+    // Calculate item width
+    var containerWidth = bnrSlider.parentElement.offsetWidth - 40; // account for padding
     var gap = 16;
     var itemWidth = isMobile ? containerWidth : (containerWidth - gap * (visibleCount - 1)) / visibleCount;
 
@@ -137,33 +137,39 @@
       item.style.width = itemWidth + 'px';
     });
 
-    function scrollToIndex(idx) {
+    function scrollToIndex(idx, animate) {
       var offset = idx * (itemWidth + gap);
+      bnrSlider.style.transition = animate !== false ? 'transform 0.6s ease' : 'none';
       bnrSlider.style.transform = 'translateX(-' + offset + 'px)';
-      bnrSlider.style.transition = 'transform 0.6s ease';
     }
 
     function next() {
       current++;
-      if (current > maxIndex) {
-        current = 0;
+      scrollToIndex(current, true);
+      
+      // When we reach the duplicate set, silently reset to the beginning
+      if (current >= originalCount) {
+        setTimeout(function() {
+          current = current - originalCount;
+          scrollToIndex(current, false);
+        }, 600);
       }
-      scrollToIndex(current);
     }
 
     // Auto-advance every 4 seconds
-    setInterval(next, 4000);
+    var autoTimer = setInterval(next, 4000);
 
-    // Dots indicator
+    // Dots indicator (only for original items)
     var dotsWrap = document.createElement('ul');
     dotsWrap.style.cssText = 'display:flex;gap:6px;justify-content:center;list-style:none;padding:10px 0 0;margin:0;';
-    for (var i = 0; i <= maxIndex; i++) {
+    var dotCount = originalCount - visibleCount + 1;
+    for (var i = 0; i < dotCount; i++) {
       (function(idx) {
         var dot = document.createElement('li');
         dot.style.cssText = 'width:8px;height:8px;border-radius:50%;background:' + (idx === 0 ? '#6B5B95' : '#ddd') + ';cursor:pointer;transition:background 0.3s;';
         dot.addEventListener('click', function() {
           current = idx;
-          scrollToIndex(current);
+          scrollToIndex(current, true);
           updateDots();
         });
         dotsWrap.appendChild(dot);
@@ -172,14 +178,14 @@
     bnrSlider.parentElement.appendChild(dotsWrap);
 
     function updateDots() {
+      var displayIdx = current >= originalCount ? current - originalCount : current;
+      if (displayIdx >= dotCount) displayIdx = dotCount - 1;
       Array.from(dotsWrap.children).forEach(function(dot, i) {
-        dot.style.background = i === current ? '#6B5B95' : '#ddd';
+        dot.style.background = i === displayIdx ? '#6B5B95' : '#ddd';
       });
     }
 
-    // Update dots after each scroll
-    var origNext = next;
-    setInterval(function() { updateDots(); }, 500);
+    setInterval(updateDots, 500);
   }
 
   // Scroll indicator hide on scroll

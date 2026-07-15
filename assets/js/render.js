@@ -97,19 +97,17 @@
   // Render footer
   function renderFooter() {
     if (!config) return;
-    // Footer banners (home page only)
+    // Footer banners - always render on all pages
     var footerBnr = document.querySelector('footer .block--footer-bnr .list--bnr');
-    if (footerBnr && document.body.classList.contains('page--home')) {
+    if (footerBnr) {
       footerBnr.innerHTML = config.footerBanners.map(function(b) {
         return '<li><a href="' + b.link + '" target="' + (b.target || '_self') + '"><img src="' + b.img + '" alt="' + b.alt + '"></a></li>';
       }).join('');
-    } else if (footerBnr) {
-      footerBnr.innerHTML = '';
     }
     // Copyright
     var copyright = document.querySelector('footer .copyright');
     if (copyright) {
-      copyright.innerHTML = '<small>©&nbsp;' + config.site.nameCN + ' All Rights Reserved.</small>';
+      copyright.innerHTML = '<small>© ' + config.site.nameCN + ' All Rights Reserved.</small>';
     }
   }
 
@@ -124,10 +122,7 @@
     if (bg) {
       bg.style.backgroundImage = 'url(/assets/img/top/bg.jpg)';
     }
-    var logoMain = document.querySelector('.logo-main');
-    if (logoMain) {
-      logoMain.innerHTML = '<img src="/assets/img/avatar.jpg" alt="' + config.site.name + '" style="width:80px;height:80px;border-radius:50%;object-fit:cover;filter:drop-shadow(0 4px 12px rgba(0,0,0,0.4));">';
-    }
+    /* keyvisual logo-main removed - logo is in header */
   }
 
   // Render banner carousel (home page)
@@ -135,10 +130,12 @@
     if (!config) return;
     var bnrList = document.querySelector('.section--bnr .list--bnr');
     if (!bnrList) return;
-    bnrList.innerHTML = config.discography.map(function(d) {
+    var bnrHTML = config.discography.map(function(d) {
       var link = d.bvid ? BILIBILI_BASE + d.bvid : '#';
       return '<li><a href="' + link + '" target="_blank"><img src="' + d.cover + '" alt="' + d.title + '"></a></li>';
     }).join('');
+    // Duplicate items for seamless infinite loop
+    bnrList.innerHTML = bnrHTML + bnrHTML;
   }
 
   // Render news (home page - 3 items, news page - all)
@@ -200,7 +197,30 @@
         '<p class="sp">' + m.title + '</p>' +
         '</a></li>';
     }).join('');
-  }// Bilibili cover helper
+  }
+
+  // Add MOVIE section arrows (NEXT/PREV)
+  function addMovieArrows() {
+    var titArea = document.querySelector('.page--home .section--movie .tit-area');
+    if (!titArea || titArea.querySelector('.movie-arrows')) return;
+    var arrows = document.createElement('div');
+    arrows.className = 'movie-arrows';
+    arrows.innerHTML = 
+      '<div class="arrow-btn arrow-prev"><svg viewBox="0 0 57.64 11.17"><polygon points="57.64 11.18 0 11.18 0 10.18 55.23 10.18 45.76 0.71 46.47 0 57.64 11.18"></polygon></svg>PREV</div>' +
+      '<div class="arrow-divider"></div>' +
+      '<div class="arrow-btn arrow-next">NEXT<svg viewBox="0 0 57.64 11.17"><polygon points="0 11.18 57.64 11.18 57.64 10.18 2.41 10.18 11.88 0.71 11.18 0 0 11.18"></polygon></svg></div>';
+    titArea.appendChild(arrows);
+    
+    var movieList = document.querySelector('.page--home .section--movie .list--movie');
+    arrows.querySelector('.arrow-prev').addEventListener('click', function() {
+      if (movieList) movieList.scrollBy({ left: -316, behavior: 'smooth' });
+    });
+    arrows.querySelector('.arrow-next').addEventListener('click', function() {
+      if (movieList) movieList.scrollBy({ left: 316, behavior: 'smooth' });
+    });
+  }
+
+  // Bilibili cover helper
   function getBiliCover(bvid) {
     return 'https://i2.hdslb.com/bfs/archive/' + bvid + '.jpg';
   }
@@ -311,6 +331,7 @@
     renderNewsList();
     renderLiveList();
     renderMovies();
+    addMovieArrows();
     renderDiscography();
     renderLyrics();
     renderBiography();
