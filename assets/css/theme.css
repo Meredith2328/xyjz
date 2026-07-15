@@ -23,7 +23,6 @@ header .logo a {
 header .logo a img {
   height: 32px;
   width: auto;
-  filter: brightness(0);
   transition: opacity 0.3s ease;
 }
 .page--home header .logo a img {
@@ -133,7 +132,7 @@ header .drawer__btn:hover span { background: #4A3D75 !important; }
   height: auto !important;
   opacity: 1 !important;
   transform: none !important;
-  filter: brightness(0) invert(1) drop-shadow(0 4px 12px rgba(0,0,0,0.5));
+  filter: invert(1) drop-shadow(0 4px 12px rgba(0,0,0,0.5));
   display: inline-block;
 }
 .page--home .container .section--keyvisual .scroll {

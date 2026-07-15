@@ -1,4 +1,4 @@
-﻿# 夏夜将終へ OFFICIAL SITE
+﻿# 夏夜将终 OFFICIAL SITE
 
 基于 Yorushika 官网模板复刻的"夏夜将终"校园乐队官网。
 

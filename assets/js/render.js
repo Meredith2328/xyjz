@@ -1,4 +1,4 @@
-﻿// 夏夜将終へ - Content renderer
+﻿// 夏夜将终 - Content renderer
 // Reads config.json and dynamically renders all page content
 (function() {
   'use strict';
@@ -23,7 +23,7 @@
   function renderTitle() {
     if (!config) return;
     var pageTitle = document.title.split('|')[0].trim();
-    if (pageTitle && pageTitle !== '夏夜将終へ OFFICIAL SITE') {
+    if (pageTitle && pageTitle !== '夏夜将终 OFFICIAL SITE') {
       document.title = pageTitle + ' | ' + config.site.name;
     } else {
       document.title = config.site.name;
@@ -36,7 +36,7 @@
     var logo = document.querySelector('header .logo a');
     if (logo) {
       logo.href = '/';
-      logo.innerHTML = '<img src="/assets/img/logo/handwriting.png" alt="' + config.site.name + '" style="height:38px;width:auto;" class="logo-img">';
+      logo.innerHTML = '<img src="/assets/img/logo/header.png" alt="' + config.site.name + '" class="logo-img">';
     }
     var fcLogo = document.querySelector('header .fc-logo');
     if (fcLogo) fcLogo.remove();
@@ -116,7 +116,7 @@
     }
     var logoMain = document.querySelector('.logo-main');
     if (logoMain) {
-      logoMain.innerHTML = '<img src="/assets/img/logo/handwriting.png" alt="' + config.site.name + '" style="width:100%;height:auto;filter:drop-shadow(0 2px 8px rgba(0,0,0,0.3));">';
+      logoMain.innerHTML = '<img src="/assets/img/logo/main.png" alt="' + config.site.name + '" >';
     }
   }
 
