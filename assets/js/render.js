@@ -116,11 +116,11 @@
     if (!config) return;
     var kv = document.querySelector('.keyvisual');
     if (kv) {
-      kv.style.backgroundImage = 'url(assets/img/top/kv.jpg)';
+      kv.style.backgroundImage = "url('assets/img/top/kv.jpg')";
     }
     var bg = document.querySelector('.bg span');
     if (bg) {
-      bg.style.backgroundImage = 'url(assets/img/top/bg.jpg)';
+      bg.style.backgroundImage = "url('assets/img/top/bg.jpg')";
     }
     /* keyvisual logo-main removed - logo is in header */
   }

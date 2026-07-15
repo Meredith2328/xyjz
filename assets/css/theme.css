@@ -1003,3 +1003,11 @@ body:not(.page--home) header {
 body:not(.page--home) header .logo a img {
   border-color: #6B5B95;
 }
+
+/* Keyvisual img approach */
+.page--home .container .section--keyvisual .keyvisual img {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  display: block !important;
+}

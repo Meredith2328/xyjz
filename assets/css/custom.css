@@ -11,7 +11,7 @@
 }
 
 .page--home .container .section--keyvisual .keyvisual {
-  background-image: url('../img/top/kv.jpg') !important;
+  background-image: url('../img/top/kv.jpg');
 }
 
 /* Fix dummy.png path */
