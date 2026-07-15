@@ -26,7 +26,7 @@ header .logo a img {
   transition: opacity 0.3s ease;
 }
 .page--home header .logo a img {
-  filter: brightness(0) invert(1) drop-shadow(0 1px 4px rgba(0,0,0,0.4));
+  filter: invert(1) drop-shadow(0 1px 4px rgba(0,0,0,0.4));
 }
 header .logo a:hover img { opacity: 0.6; }
 header .fc-logo { display: none !important; }
@@ -56,6 +56,7 @@ header .drawer__btn span {
   display: block;
   width: 100%;
   height: 50px;
+  white-space: nowrap;
   background: #6B5B95 !important;
   padding: 18px 0 0 15px;
   color: #fff;
@@ -243,7 +244,8 @@ header .drawer__btn:hover span { background: #4A3D75 !important; }
   font-family: 'Roboto', sans-serif;
   font-size: 13px;
   color: #999;
-  width: 140px;
+  width: auto;
+  line-height: 1.8;
 }
 .page--home .container .section--news .inner .list--news > li a .category {
   font-family: 'Roboto', sans-serif;
@@ -257,8 +259,8 @@ header .drawer__btn:hover span { background: #4A3D75 !important; }
   display: inline-block;
 }
 .page--home .container .section--news .inner .list--news > li a .tit {
-  padding-left: 140px;
-  line-height: 1.6;
+  padding-left: 220px;
+  line-height: 1.8;
   font-size: 14px;
 }
 .page--home .container .section--news .inner .list--news li a:hover { opacity: 0.6; }
@@ -398,7 +400,7 @@ footer .block--footer-bnr .list--bnr li a {
 }
 footer .block--footer-bnr .list--bnr li img {
   width: 100%;
-  height: 80px;
+  height: 120px;
   object-fit: cover;
   display: block;
 }
@@ -454,7 +456,8 @@ footer .copyright {
   font-family: 'Roboto', sans-serif;
   font-size: 13px;
   color: #999;
-  width: 140px;
+  width: auto;
+  line-height: 1.8;
 }
 .page--list .section--list .list--news > li a .category {
   font-family: 'Roboto', sans-serif;
@@ -467,8 +470,8 @@ footer .copyright {
   line-height: 1.4;
 }
 .page--list .section--list .list--news > li a .tit {
-  padding-left: 140px;
-  line-height: 1.6;
+  padding-left: 220px;
+  line-height: 1.8;
   font-size: 14px;
 }
 .page--list .section--list .list--news li a:hover { opacity: 0.6; }
@@ -857,7 +860,7 @@ footer .copyright {
   .page--discography .section--list .inner .list--discography,
   .page--list .section--list .inner .list--discography,
   .page--lyrics .section--list .inner .list--discography { width: 100% !important; }
-  .page--home .container .section--news .inner .list--news > li a .date { float: none; width: auto; margin-bottom: 4px; }
+  .page--home .container .section--news .inner .list--news > li a .date { float: none; width: auto; margin-bottom: 4px; display: inline-block; }
   .page--home .container .section--news .inner .list--news > li a .tit { padding-left: 0; }
   .page--list .section--list .list--news > li a .date { float: none; width: auto; margin-bottom: 4px; }
   .page--list .section--list .list--news > li a .tit { padding-left: 0; }
