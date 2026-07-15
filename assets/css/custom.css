@@ -7,24 +7,24 @@
 
 /* Fix background image paths to use local assets */
 .bg span {
-  background-image: url('assets/img/top/bg.jpg') !important;
+  background-image: url('../img/top/bg.jpg') !important;
 }
 
 .page--home .container .section--keyvisual .keyvisual {
-  background-image: url('assets/img/top/kv.jpg') !important;
+  background-image: url('../img/top/kv.jpg') !important;
 }
 
 /* Fix dummy.png path */
 img[src="/static/yorushika/official/common/dummy.png"] {
-  src: url('assets/img/common/dummy.png');
+  src: url('../img/common/dummy.png');
 }
 
 /* FC logo paths */
 header .fc-logo a img[src="/static/yorushika/official/common/ico_fc_w.svg"] {
-  content: url('assets/img/common/ico_fc_w.svg');
+  content: url('../img/common/ico_fc_w.svg');
 }
 header .fc-logo a img[src="/static/yorushika/official/common/ico_fc.svg"] {
-  content: url('assets/img/common/ico_fc_w.svg');
+  content: url('../img/common/ico_fc_w.svg');
 }
 
 /* Loading screen fix - skip the loading animation for simpler reproduction */
