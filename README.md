@@ -5,7 +5,6 @@
 ## 本地运行
 
 ```powershell
-cd C:\Users\10pi\Documents\natsuyoru
 python -m http.server 8080
 ```
 
