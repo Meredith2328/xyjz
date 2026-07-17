@@ -2,6 +2,4 @@
 *.pyc
 screenshot*.png
 .DS_Store
-# 生成产物：由 scripts/build.py 从 content/*.md 生成，请勿手改、请勿提交
-config.json
 dist/

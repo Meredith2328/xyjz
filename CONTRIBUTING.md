@@ -1,6 +1,6 @@
 ﻿# 贡献内容
 
-改 `content/` 下的 markdown，提交即可。GitHub Action 会自动生成 `config.json` 并部署到 GitHub Pages。**不要手改 `config.json`**——它是生成产物。
+改 `content/` 下的 markdown，提交即可。GitHub Action 会自动重新生成 `config.json` 并提交回 master，GitHub Pages 随 master 更新。**不要手改 `config.json`**——它是生成产物。
 
 ## 本地预览
 
@@ -50,4 +50,4 @@ python -m http.server 8080
 
 ## 提交
 
-推送即可，Action 自动构建部署。想本地先看就跑上面两条命令。
+推送 `content/` 改动即可，Action 会自动重新生成并提交 `config.json`（你无需手动提交它）。想本地先看就跑上面两条命令。

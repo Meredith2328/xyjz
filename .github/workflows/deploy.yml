@@ -1,25 +1,22 @@
-﻿name: Build and Deploy
+﻿name: Build config.json
 
+# 仓库 GitHub Pages 由 master 分支直接提供，因此 config.json 需要提交到 master。
+# 这里在 content/ 等来源变化后自动重新生成 config.json 并提交回去，避免手改/漏改。
 on:
   push:
     branches: [master]
+    paths:
+      - 'content/**'
+      - 'scripts/build.py'
+      - '.github/workflows/deploy.yml'
   workflow_dispatch:
 
 permissions:
-  contents: read
-  pages: write
-  id-token: write
-
-concurrency:
-  group: pages
-  cancel-in-progress: true
+  contents: write
 
 jobs:
-  build-deploy:
+  build:
     runs-on: ubuntu-latest
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v5
@@ -27,12 +24,14 @@ jobs:
           python-version: '3.x'
       - name: Build config.json from content/*.md
         run: python scripts/build.py
-      - name: Remove non-site files from upload
+      - name: Commit regenerated config.json
         run: |
-          rm -rf .git .github content scripts reports 待处理素材
-      - uses: actions/configure-pages@v5
-      - uses: actions/upload-pages-artifact@v3
-        with:
-          path: .
-      - id: deployment
-        uses: actions/deploy-pages@v4
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add config.json
+          if git diff --staged --quiet; then
+            echo "config.json 未变化，无需提交"
+          else
+            git commit -m "chore: 自动重新生成 config.json [skip ci]"
+            git push
+          fi

@@ -5,7 +5,7 @@
 ## 内容怎么改
 
 所有动态内容（新闻、演出、作品、成员、年表、联系方式）以 `content/*.md` 为唯一来源。
-推送后 GitHub Action 自动运行 `scripts/build.py` 生成 `config.json` 并部署到 GitHub Pages，无需手改 HTML/JS/JSON。
+推送后 GitHub Action 自动运行 `scripts/build.py` 重新生成 `config.json` 并提交回 master；GitHub Pages 由 master 分支直接提供，无需手改 HTML/JS/JSON。
 
 - 改乐队简介/成员/结成备忘 → `content/band.md`
 - 加翻唱作品（自动进 DISCOGRAPHY/MOVIE/NEWS）→ `content/works.md`
@@ -25,9 +25,9 @@ python -m http.server 8080
 ```
 浏览器打开 http://localhost:8080/（必须起本地服务器，直接双击 HTML 会因跨域加载不到 config.json）。
 
-## 首次启用 GitHub Pages（一次性）
+## GitHub Pages
 
-仓库 Settings → Pages → Source 选 **GitHub Actions**。之后每次推送到 master，`.github/workflows/deploy.yml` 会自动构建并部署。
+仓库 Settings → Pages → Source 选 **Deploy from a branch**，分支选 `master`/(root) 即可。之后每次推送 `content/` 下改动，`.github/workflows/deploy.yml` 会自动重新生成并提交 `config.json`，Pages 随 master 更新。
 
 ## 结构
 
@@ -35,7 +35,7 @@ python -m http.server 8080
 |---|---|
 | `content/*.md` | 内容唯一来源（人改这里） |
 | `scripts/build.py` | 把 markdown 编译成 `config.json`（机器跑） |
-| `config.json` | 生成产物，已 gitignore，勿手改 |
+| `config.json` | 由 build.py 从 content/ 生成并提交；Action 自动同步，勿手改 |
 | `assets/js/render.js` | 读 config.json 渲染各列表页 |
 | `index.html` 等 | 页面骨架，一般不动 |
 | `reports/` | 人工确认用的整理报告（演出时间线、代码问题等） |
