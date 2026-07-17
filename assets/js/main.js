@@ -199,8 +199,6 @@
     initMenu();
     initInview();
     initYouTubeThumbs();
-    initMovieCarousel();
-    initBannerCarousel();
     initScrollIndicator();
     initMobileHeader();
   });

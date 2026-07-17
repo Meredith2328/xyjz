@@ -69,8 +69,14 @@
     titleEl.textContent = item.title;
     creditEl.innerHTML = '原曲：' + item.original + '<br>Cover：夏夜将终';
 
-    // Placeholder lyrics - actual lyrics would need to be added to config
-    bodyEl.innerHTML = '<p style="text-align:center;color:#999;font-size:13px;padding:40px 0;">歌詞は準備中です<br>原曲の歌詞をご参照ください<br><br><a href="' + BILIBILI_BASE + item.bvid + '" target="_blank" style="color:#8B7AB8;text-decoration:underline;">Bilibiliで視聴する</a></p>';
+    if (item.lyrics && item.lyrics.trim()) {
+      var esc = item.lyrics.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+      bodyEl.innerHTML = esc.split(/\n{2,}/).map(function(p) {
+        return '<p>' + p.replace(/\n/g, '<br>') + '</p>';
+      }).join('');
+    } else {
+      bodyEl.innerHTML = '<p style="text-align:center;color:#999;font-size:13px;padding:40px 0;">歌詞は準備中です<br>原曲の歌詞をご参照ください<br><br><a href="' + BILIBILI_BASE + item.bvid + '" target="_blank" style="color:#8B7AB8;text-decoration:underline;">Bilibiliで視聴する</a></p>';
+    }
   }
 
   document.addEventListener('DOMContentLoaded', function() {

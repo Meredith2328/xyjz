@@ -143,7 +143,7 @@
     if (!newsList) return;
     var items = document.body.classList.contains('page--home') ? config.news.slice(0, 3) : config.news;
     newsList.innerHTML = items.map(function(n) {
-      var link = n.bvid ? BILIBILI_BASE + n.bvid : '/news.html';
+      var link = n.bvid ? BILIBILI_BASE + n.bvid : 'news.html';
       return '<li class="inview new"><a href="' + link + '" target="' + (n.bvid ? '_blank' : '_self') + '"><p class="date">' + n.date + '<span class="category">' + n.category + '</span></p><p class="tit">' + n.title + '</p></a></li>';
     }).join('');
   }
@@ -175,13 +175,8 @@
     if (!config) return;
     var movieList = document.querySelector('.section--movie .list--movie') || document.querySelector('.section--list .list--movie');
     if (!movieList) return;
-    // Build a map of bvid -> cover from discography
-    var coverMap = {};
-    config.discography.forEach(function(d) {
-      if (d.bvid) coverMap[d.bvid] = d.cover;
-    });
     movieList.innerHTML = config.movies.map(function(m) {
-      var cover = coverMap[m.bvid] || ('https://i2.hdslb.com/bfs/archive/' + m.bvid + '.jpg');
+      var cover = m.cover || 'assets/img/common/dummy.png';
       return '<li class="inview youtube">' +
         '<a href="' + BILIBILI_BASE + m.bvid + '" target="_blank">' +
         '<figure class="thumb" style="background-image:url(\'' + cover + '\');">' +
@@ -218,18 +213,13 @@
     });
   }
 
-  // bilibili cover helper
-  function getBiliCover(bvid) {
-    return 'https://i2.hdslb.com/bfs/archive/' + bvid + '.jpg';
-  }
-
   // Render discography page
   function renderDiscography() {
     if (!config) return;
     var discoList = document.querySelector('.section--list .list--discography');
     if (!discoList) return;
     discoList.innerHTML = config.discography.map(function(d) {
-      var link = d.bvid ? '/disco-detail.html?bvid=' + d.bvid : '#';
+      var link = d.bvid ? 'disco-detail.html?bvid=' + d.bvid : '#';
       return '<li class="inview"><a href="' + link + '" target="_blank" class="clearfix">' +
         '<figure class="thumb"><img src="assets/img/common/dummy.png" style="background-image:url(\'' + d.cover + '\');" alt="' + d.title + '"></figure>' +
         '<ul class="block--text">' +
@@ -245,7 +235,7 @@
     var lyricsList = document.querySelector('.section--list .list--discography');
     if (!lyricsList || !document.body.classList.contains('page--lyrics')) return;
     lyricsList.innerHTML = config.discography.filter(function(d) { return d.category === '翻唱'; }).map(function(d) {
-      var link = d.bvid ? '/lyrics-detail.html?bvid=' + d.bvid : '#';
+      var link = d.bvid ? 'lyrics-detail.html?bvid=' + d.bvid : '#';
       return '<li class="inview"><a href="' + link + '" class="clearfix">' +
         '<figure class="thumb"><img src="assets/img/common/dummy.png" style="background-image:url(\'' + d.cover + '\');" alt="' + d.title + '"></figure>' +
         '<ul class="block--text"><li class="title"><p class="tit"><span><span>' + d.title + '</span></span></p></li></ul></a></li>';
@@ -310,7 +300,7 @@
     if (!specialList || !document.body.classList.contains('page--list') || !document.title.includes('SPECIAL')) return;
     // Show discography covers as special content
     specialList.innerHTML = config.discography.slice(0, 4).map(function(d) {
-      var link = d.bvid ? '/disco-detail.html?bvid=' + d.bvid : '#';
+      var link = d.bvid ? 'disco-detail.html?bvid=' + d.bvid : '#';
       return '<li class="inview"><a href="' + link + '" target="_blank" class="clearfix">' +
         '<figure class="thumb"><img src="assets/img/common/dummy.png" style="background-image:url(\'' + d.cover + '\');" alt="' + d.title + '"></figure>' +
         '<ul class="block--text"><li class="title"><p class="tit"><span><span>' + d.title + '</span></span></p></li></ul></a></li>';
