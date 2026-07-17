@@ -1,5 +1,5 @@
 ﻿# -*- coding: utf-8 -*-
-import re, json, sys, time, datetime
+import re, json, sys, time, os, datetime
 import requests
 from bs4 import BeautifulSoup
 
@@ -113,11 +113,11 @@ for sid, note in links:
     results.append(res)
     time.sleep(1.5)
 
-with open(r"C:\Users\10pi\Documents\natsuyoru\reports\_crawl_raw.json", "w", encoding="utf-8") as f:
+with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "_crawl_raw.json"), "w", encoding="utf-8") as f:
     json.dump(results, f, ensure_ascii=False, indent=2)
 
 # also dump human readable
-with open(r"C:\Users\10pi\Documents\natsuyoru\reports\_crawl_raw.txt", "w", encoding="utf-8") as f:
+with open(os.path.join(os.path.dirname(os.path.abspath(__file__)), "_crawl_raw.txt"), "w", encoding="utf-8") as f:
     for r in results:
         f.write("="*80 + "\n")
         f.write("SID: " + r["sid"] + "  | note: " + r["note"] + "\n")

@@ -17,8 +17,9 @@
 
 ## 本地预览
 
+在项目根目录下运行：
+
 ```powershell
-cd C:\Users\10pi\Documents\natsuyoru
 python scripts/build.py        # 从 content/*.md 生成 config.json
 python -m http.server 8080
 ```
